@@ -150,6 +150,29 @@ From the dataset documentation:
 The 'residual.sugar' feature seems to have a long tail, being positively skewed. The values for residual sugar have high consentrations and spike around the values of 1 and 2, later dropping off. The median for residual sugar is 5.20, with a mean of 6.39.
 
 
+```{r echo=FALSE, Univariate_Plots6}
+# Plot chlorides histogram
+ggplot(aes(x = chlorides), data = wine) +
+  geom_histogram(bins = 30)
+
+# Plot chlorides histogram with limits
+ggplot(aes(x = chlorides), data = wine) +
+  geom_histogram(binwidth = 0.001) +
+  scale_x_continuous(limits = c(0, 0.2),
+                     breaks = c(seq(0, 0.2, by = 0.01)))
+
+# Get residual.sugar statistical values
+summary(wine$chlorides)
+```
+
+
+From the dataset documentation:
+
+* chlorides (sodium chloride - g / dm^3): the amount of salt in the wine
+
+The 'chlorides' feature looks normally distributed around the median of 0.043, with a mean of 0.046 but, the data does have a long tail to the right that makes up a small portion of the overall wines. It would make sense for wines to have the smallest amount of salt possible due to wines not being known for their high salinity.
+
+
 
 ### What chemicial properties influence the quality of white wines?
 
