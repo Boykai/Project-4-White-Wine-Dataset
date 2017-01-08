@@ -27,15 +27,38 @@ wine <- read.csv(file = 'wineQualityWhites.csv', head = TRUE, sep = ',')
 
 # Univariate Plots Section
 ```{r echo=FALSE, Univariate_Plots0}
-# Print info for wine df
-str(wine)
+# Plot X histogram
+ggplot(aes(x = X), data = wine) +
+  geom_histogram(bins = length(wine$X)) 
 
-# Print out head for wine df
-head(wine)
+# Plot X line graph with augmented binsize
+ggplot(aes(x = X, y = X), data = wine) +
+  geom_line()
 
-# Print out summary for wine df
-summary(wine)
+# Get X statistical values
+summary(wine$X)
 ```
+
+Within the 'wine' df, the 'X' feature acts as an unique ID for each wine given within the df.
+
+
+```{r echo=FALSE, Univariate_Plots1}
+# Plot fixed.acidity histogram
+ggplot(aes(x = fixed.acidity), data = wine) +
+  geom_histogram(bins = 30)
+
+# Plot fixed.acidity histogram with augmented histogram
+ggplot(aes(x = fixed.acidity), data = wine) +
+  geom_histogram(binwidth = 0.1) +
+  scale_x_continuous(limit = c(4, 11), 
+                     breaks = c(4, 5, 6, 7, 8, 9, 10, 11))
+
+# Get X statistical values
+summary(wine$fixed.acidity)
+```
+
+The 'fixed.acidity' feature seems to have a wide range of values, normally distrubuted around 6.8. There are some outliers within the wine dataset, which have a 'fixed.acidity' value greater than 11.
+
 
 
 The White Wine dataset consists of 13 variables, with almost 5,000 observations.
