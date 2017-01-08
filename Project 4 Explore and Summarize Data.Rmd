@@ -1,4 +1,4 @@
-TITLE by YOUR_NAME_HERE
+White Wine Dataset - Explore and Summarize Data by James Tooles
 ========================================================
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, packages}
@@ -9,22 +9,50 @@ TITLE by YOUR_NAME_HERE
 # This prevents the code from displaying in the knitted HTML output.
 # You should set echo=FALSE for all code chunks in your file.
 
+#install.packages('ggplot2', dependencies = T)
+#install.packages('knitr', dependencies = T)
+#install.packages('dplyr', dependencies = T)
+
 library(ggplot2)
+library(knitr)
+library(dplyr)
 ```
+
 
 ```{r echo=FALSE, Load_the_Data}
 # Load the Data
-
+wine <- read.csv(file = 'wineQualityWhites.csv', head = TRUE, sep = ',')
 ```
+
 
 # Univariate Plots Section
-```{r echo=FALSE, Univariate_Plots}
+```{r echo=FALSE, Univariate_Plots0}
+# Print info for wine df
+str(wine)
 
+# Print out head for wine df
+head(wine)
+
+# Print out summary for wine df
+summary(wine)
 ```
+
+
+The White Wine dataset consists of 13 variables, with almost 5,000 observations.
+
+
+### What chemicial properties influence the quality of white wines?
+
+### What chemicial properties influence the alcholol level of white wines?
 
 # Univariate Analysis
 
 ### What is the structure of your dataset?
+There are 4898 wines of 13 features (x, fixed.acidity, volatile.acidity, citric.acid, residual.sugar, cholorides, free.sulfur.dioxide, total.sulfur.dioxide, density, pH, sulphates, alcohol, quality). All of these variables are given as quanitavive variables.
+
+Other observations:
+* The 'quality' distrubution is approximately normal
+* The median 'quality' value is 6.0
 
 ### What is/are the main feature(s) of interest in your dataset?
 
