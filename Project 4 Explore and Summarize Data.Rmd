@@ -26,7 +26,23 @@ wine <- read.csv(file = 'wineQualityWhites.csv', head = TRUE, sep = ',')
 
 
 # Univariate Plots Section
+
+
 ```{r echo=FALSE, Univariate_Plots0}
+# Print info for wine df
+str(wine)
+ 
+# Print out head for wine df
+head(wine)
+  
+# Print out summary for wine df
+summary(wine)
+```
+
+The White Wine dataset consists of 13 variables, with almost 5,000 observations.
+
+
+```{r echo=FALSE, Univariate_Plots1}
 # Plot X histogram
 ggplot(aes(x = X), data = wine) +
   geom_histogram(bins = length(wine$X)) 
@@ -39,10 +55,11 @@ ggplot(aes(x = X, y = X), data = wine) +
 summary(wine$X)
 ```
 
+
 Within the 'wine' df, the 'X' feature acts as an unique ID for each wine given within the df.
 
 
-```{r echo=FALSE, Univariate_Plots1}
+```{r echo=FALSE, Univariate_Plots2}
 # Plot fixed.acidity histogram
 ggplot(aes(x = fixed.acidity), data = wine) +
   geom_histogram(bins = 30)
@@ -57,9 +74,15 @@ ggplot(aes(x = fixed.acidity), data = wine) +
 summary(wine$fixed.acidity)
 ```
 
+
+From the dataset documentation:
+
+* fixed acidity: most acids involved with wine or fixed or nonvolatile (do not evaporate readily)
+
 The 'fixed.acidity' feature seems to have a wide range of values, normally distrubuted around 6.8. There are some outliers within the wine dataset, which have a 'fixed.acidity' value greater than 11. The 'fixed.acidity' ranges in values from 3.8 to 14.2.
 
-```{r echo=FALSE, Univariate_Plots2}
+
+```{r echo=FALSE, Univariate_Plots3}
 # Plot volatile.acidity histogram
 ggplot(aes(x = volatile.acidity), data = wine) +
   geom_histogram(bins = 30)
@@ -74,7 +97,17 @@ ggplot(aes(x = volatile.acidity), data = wine) +
 summary(wine$volatile.acidity)
 ```
 
+
+From the dataset documentation:
+
+* volatile acidity: the amount of acetic acid in wine, which at too high of levels can lead to an unpleasant, vinegar taste
+
 The 'volatile.acidity' feature seems to have a long tail, being positively skewed. The second histogram cuts out the outliers on the few high end values for a more detailed inspection of the bulk of the data. The values for 'volatile.acidity' are centered around the median of 0.26, with a mean of 0.28. The values of 'volatile.acidity' range from 0.08 to 1.1.
+
+
+
+
+
 
 The White Wine dataset consists of 13 variables, with almost 5,000 observations.
 
