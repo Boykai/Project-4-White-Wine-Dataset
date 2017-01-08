@@ -70,16 +70,16 @@ ggplot(aes(x = fixed.acidity), data = wine) +
   scale_x_continuous(limit = c(4, 11), 
                      breaks = c(4, 5, 6, 7, 8, 9, 10, 11))
 
-# Get X statistical values
+# Get fixed.acidity statistical values
 summary(wine$fixed.acidity)
 ```
 
 
 From the dataset documentation:
 
-* fixed acidity: most acids involved with wine or fixed or nonvolatile (do not evaporate readily)
+* fixed acidity (tartaric acid - g / dm^3): most acids involved with wine or fixed or nonvolatile (do not evaporate readily)
 
-The 'fixed.acidity' feature seems to have a wide range of values, normally distrubuted around 6.8. There are some outliers within the wine dataset, which have a 'fixed.acidity' value greater than 11. The 'fixed.acidity' ranges in values from 3.8 to 14.2.
+The 'fixed.acidity' feature seems to have a wide range of values, normally distrubuted around 6.80. There are some outliers within the wine dataset, which have a 'fixed.acidity' value greater than 11. The 'fixed.acidity' ranges in values from 3.80 to 14.20.
 
 
 ```{r echo=FALSE, Univariate_Plots3}
@@ -93,19 +93,39 @@ ggplot(aes(x = volatile.acidity), data = wine) +
   scale_x_continuous(limit = c(0.1, 0.7), 
                      breaks = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7))
 
-# Get X statistical values
+# Get volatile.acidity statistical values
 summary(wine$volatile.acidity)
 ```
 
 
 From the dataset documentation:
 
-* volatile acidity: the amount of acetic acid in wine, which at too high of levels can lead to an unpleasant, vinegar taste
+* volatile acidity (acetic acid - g / dm^3): the amount of acetic acid in wine, which at too high of levels can lead to an unpleasant, vinegar taste
 
-The 'volatile.acidity' feature seems to have a long tail, being positively skewed. The second histogram cuts out the outliers on the few high end values for a more detailed inspection of the bulk of the data. The values for 'volatile.acidity' are centered around the median of 0.26, with a mean of 0.28. The values of 'volatile.acidity' range from 0.08 to 1.1.
+The 'volatile.acidity' feature seems to have a long tail, being positively skewed. The second histogram cuts out the outliers on the few high end values for a more detailed inspection of the bulk of the data. The values for 'volatile.acidity' are centered around the median of 0.26, with a mean of 0.28. The values of 'volatile.acidity' range from 0.08 to 1.10. Based on the description given by the dataset documentation, keeping the 'volatile.acidity' values low would be in the best interest of the consumer.
 
 
+```{r echo=FALSE, Univariate_Plots4}
+# Plot citric.acid histogram
+ggplot(aes(x = citric.acid), data = wine) +
+  geom_histogram(bins = 30)
 
+# Plot citric.acid histogram with augmented histogram
+ggplot(aes(x = citric.acid), data = wine) +
+  geom_histogram(binwidth = 0.01) +
+  scale_x_continuous(limit = c(0.1, 0.8), 
+                     breaks = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8))
+
+# Get citric.acid statistical values
+summary(wine$citric.acid)
+```
+
+
+From the dataset documentation:
+
+* citric acid (g / dm^3): found in small quantities, citric acid can add 'freshness' and flavor to wines
+
+The 'citric.acid' feature seems to have a long tail, bring positively skewed. The values for 'citric.acid' are centered around the median of 0.32, with a mean of 0.33. The values of 'citric.acid' range from 0.00 to 1.66. Based on the description given by the dataset documentation, keeping the 'citric acid' values high would be in the best interest of the consumer.
 
 
 
