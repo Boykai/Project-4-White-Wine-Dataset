@@ -308,31 +308,62 @@ $(document).ready(function () {
 </ul>
 <p>Starting with a default histogram of the ‘quality’ feature within the ‘wine’ dataset resembles a Gaussian distribution of the ‘quality’ feature, centered at a ‘quality’ value of 6. By increasing the bin size of the histogram allowed a better visual depiction of the dataset, which is slightly positively skewed. These graphs support the findings within the statistical summary for ‘quality’ with a median value of 6, and a mean value of 5.878.</p>
 <p>The dataset documentation states that the ‘quality’ feature should range from 0-10, unfortunately all of the wines within this dataset range from 3-9.</p>
-<div id="what-chemical-properties-influence-the-quality-of-white-wines" class="section level3">
-<h3>What chemical properties influence the quality of white wines?</h3>
-</div>
-<div id="what-chemical-properties-influence-the-alcohol-level-of-white-wines" class="section level3">
-<h3>What chemical properties influence the alcohol level of white wines?</h3>
-</div>
 </div>
 <div id="univariate-analysis" class="section level1">
 <h1>Univariate Analysis</h1>
 <div id="what-is-the-structure-of-your-dataset" class="section level3">
 <h3>What is the structure of your dataset?</h3>
 <p>There are 4898 wines of 13 features (x, fixed.acidity, volatile.acidity, citric.acid, residual.sugar, cholorides, free.sulfur.dioxide, total.sulfur.dioxide, density, pH, sulphates, alcohol, quality). All of these variables are given as quanitavive variables.</p>
-<p>Other observations: * The ‘quality’ distrubution is approximately normal * The median ‘quality’ value is 6.0</p>
+<ul>
+<li><p><strong>X</strong>: a unique id identifier for each wine</p></li>
+<li><p><strong>fixed acidity</strong>: most acids involved with wine or fixed or nonvolatile (do not evaporate readily)</p></li>
+<li><p><strong>volatile acidity</strong>: the amount of acetic acid in wine, which at too high of levels can lead to an unpleasant, vinegar taste</p></li>
+<li><p><strong>citric acid</strong>: found in small quantities, citric acid can add ‘freshness’ and flavor to wines</p></li>
+<li><p><strong>residual sugar</strong>: the amount of sugar remaining after fermentation stops, it’s rare to find wines with less than 1 gram/liter and wines with greater than 45 grams/liter are considered sweet</p></li>
+<li><p><strong>chlorides</strong>: the amount of salt in the wine</p></li>
+<li><p><strong>free sulfur dioxide</strong>: the free form of SO2 exists in equilibrium between molecular SO2 (as a dissolved gas) and bisulfite ion; it prevents microbial growth and the oxidation of wine</p></li>
+<li><p><strong>total sulfur dioxide</strong>: amount of free and bound forms of S02; in low concentrations, SO2 is mostly undetectable in wine, but at free SO2 concentrations over 50 ppm, SO2 becomes evident in the nose and taste of wine</p></li>
+<li><p><strong>density</strong>: the density of water is close to that of water depending on the percent alcohol and sugar content</p></li>
+<li><p><strong>pH</strong>: describes how acidic or basic a wine is on a scale from 0 (very acidic) to 14 (very basic); most wines are between 3-4 on the pH scale</p></li>
+<li><p><strong>sulphates</strong>: a wine additive which can contribute to sulfur dioxide gas (S02) levels, wich acts as an antimicrobial and antioxidant</p></li>
+<li><p><strong>alcohol</strong>: the percent alcohol content of the wine</p></li>
+<li><strong>quality</strong> (score between 0 and 10)
+<ul>
+<li>(worst) 0 ——-&gt; 10 (best)</li>
+</ul></li>
+</ul>
+<p>Other observations:</p>
+<ul>
+<li>The ‘quality’ distrubution is approximately normal</li>
+<li>The median ‘quality’ value is 6.0</li>
+<li>Citric acid has a spike in wine count at a value of 0.5</li>
+</ul>
 </div>
-<div id="what-isare-the-main-features-of-interest-in-your-dataset" class="section level3">
-<h3>What is/are the main feature(s) of interest in your dataset?</h3>
+<div id="what-are-the-main-features-of-interest-in-your-dataset" class="section level3">
+<h3>What are the main features of interest in your dataset?</h3>
+<p>The main features of interest are any features that significatly contribute to the quality output value.</p>
 </div>
-<div id="what-other-features-in-the-dataset-do-you-think-will-help-support-your-investigation-into-your-features-of-interest" class="section level3">
-<h3>What other features in the dataset do you think will help support your investigation into your feature(s) of interest?</h3>
+<div id="what-other-features-in-the-dataset-do-you-think-will-help-support-your-investigation-into-your-feature-of-interest" class="section level3">
+<h3>What other features in the dataset do you think will help support your investigation into your feature of interest?</h3>
+<p>Volatile acidity, citric acid, residual sugar, chlorides, total sulfur dioxide, pH, and alcohol. All of these features are described in the dataset documentation as to affect the taste, smell, or other measurements of value to consumers such as alcohol content.</p>
+<p>The other features such as, fixed acidity, free sulfur dioxide, density, sulphates, do not seem to play a role in determining quality value due to the description given within the dataset documentation. All of thease features are either dependent upon other features of interest, preservatives, or do not show enough variance to be heavily weighted in determining wine quality.</p>
 </div>
 <div id="did-you-create-any-new-variables-from-existing-variables-in-the-dataset" class="section level3">
 <h3>Did you create any new variables from existing variables in the dataset?</h3>
+<p>No new variables were created in this tidy wine dataset.</p>
 </div>
 <div id="of-the-features-you-investigated-were-there-any-unusual-distributions-did-you-perform-any-operations-on-the-data-to-tidy-adjust-or-change-the-form-of-the-data-if-so-why-did-you-do-this" class="section level3">
 <h3>Of the features you investigated, were there any unusual distributions? Did you perform any operations on the data to tidy, adjust, or change the form of the data? If so, why did you do this?</h3>
+<p>The citric acid feature has a spike in wine count at a value of 0.5, this seems odd and interesting and will be investigated for any impact in wine quality within the bivariate section.</p>
+<p>All of the features were limited, outliers removed, and/or parsed in more visual detail to see any hidden attributes within the feature.</p>
+<p>The quality feature, was shown on a bar graph to highlight the ordinal propery of the feature.</p>
+</div>
+<div id="questions-of-interest" class="section level3">
+<h3>Questions of Interest</h3>
+<ul>
+<li><p>What chemical properties influence the quality of white wines?</p></li>
+<li><p>What chemical properties influence the alcohol level of white wines?</p></li>
+</ul>
 </div>
 </div>
 <div id="bivariate-plots-section" class="section level1">

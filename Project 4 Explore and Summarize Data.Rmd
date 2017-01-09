@@ -336,27 +336,67 @@ Starting with a default histogram of the 'quality' feature within the 'wine' dat
 The dataset documentation states that the 'quality' feature should range from 0-10, unfortunately all of the wines within this dataset range from 3-9.
 
 
-### What chemical properties influence the quality of white wines?
-
-### What chemical properties influence the alcohol level of white wines?
-
 # Univariate Analysis
 
 ### What is the structure of your dataset?
 There are 4898 wines of 13 features (x, fixed.acidity, volatile.acidity, citric.acid, residual.sugar, cholorides, free.sulfur.dioxide, total.sulfur.dioxide, density, pH, sulphates, alcohol, quality). All of these variables are given as quanitavive variables.
 
+* **X**: a unique id identifier for each wine
+
+* **fixed acidity**: most acids involved with wine or fixed or nonvolatile (do not evaporate readily)
+
+* **volatile acidity**: the amount of acetic acid in wine, which at too high of levels can lead to an unpleasant, vinegar taste
+
+* **citric acid**: found in small quantities, citric acid can add 'freshness' and flavor to wines
+
+* **residual sugar**: the amount of sugar remaining after fermentation stops, it's rare to find wines with less than 1 gram/liter and wines with greater than 45 grams/liter are considered sweet
+
+* **chlorides**: the amount of salt in the wine
+
+* **free sulfur dioxide**: the free form of SO2 exists in equilibrium between molecular SO2 (as a dissolved gas) and bisulfite ion; it prevents microbial growth and the oxidation of wine
+
+* **total sulfur dioxide**: amount of free and bound forms of S02; in low concentrations, SO2 is mostly undetectable in wine, but at free SO2 concentrations over 50 ppm, SO2 becomes evident in the nose and taste of wine
+
+* **density**: the density of water is close to that of water depending on the percent alcohol and sugar content
+
+* **pH**: describes how acidic or basic a wine is on a scale from 0 (very acidic) to 14 (very basic); most wines are between 3-4 on the pH scale
+
+* **sulphates**: a wine additive which can contribute to sulfur dioxide gas (S02) levels, wich acts as an antimicrobial and antioxidant
+
+* **alcohol**: the percent alcohol content of the wine
+
+* **quality** (score between 0 and 10)
+    * (worst) 0 -------> 10 (best)
+
 Other observations:
+
 * The 'quality' distrubution is approximately normal
 * The median 'quality' value is 6.0
+* Citric acid has a spike in wine count at a value of 0.5
 
-### What is/are the main feature(s) of interest in your dataset?
+### What are the main features of interest in your dataset?
+The main features of interest are any features that significatly contribute to the quality output value. 
 
-### What other features in the dataset do you think will help support your investigation into your feature(s) of interest?
+### What other features in the dataset do you think will help support your investigation into your feature of interest?
+Volatile acidity, citric acid, residual sugar, chlorides, total sulfur dioxide, pH, and alcohol. All of these features are described in the dataset documentation as to affect the taste, smell, or other measurements of value to consumers such as alcohol content.
+
+The other features such as, fixed acidity, free sulfur dioxide, density, sulphates, do not seem to play a role in determining quality value due to the description given within the dataset documentation. All of thease features are either dependent upon other features of interest, preservatives, or do not show enough variance to be heavily weighted in determining wine quality.
 
 ### Did you create any new variables from existing variables in the dataset?
+No new variables were created in this tidy wine dataset.
 
 ### Of the features you investigated, were there any unusual distributions? Did you perform any operations on the data to tidy, adjust, or change the form of the data? If so, why did you do this?
+The citric acid feature has a spike in wine count at a value of 0.5, this seems odd and interesting and will be investigated for any impact in wine quality within the bivariate section.
 
+All of the features were limited, outliers removed, and/or parsed in more visual detail to see any hidden attributes within the feature.
+
+The quality feature, was shown on a bar graph to highlight the ordinal propery of the feature.
+
+### Questions of Interest
+
+* What chemical properties influence the quality of white wines?
+
+* What chemical properties influence the alcohol level of white wines?
 
 
 # Bivariate Plots Section
