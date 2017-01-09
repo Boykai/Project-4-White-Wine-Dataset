@@ -184,7 +184,7 @@ ggplot(aes(x = free.sulfur.dioxide), data = wine) +
   scale_x_continuous(limits = c(0, 100),
                      breaks = c(seq(0, 100, by = 5)))
 
-# Get residual.sugar statistical values
+# Get free.sulfur.dioxide statistical values
 summary(wine$free.sulfur.dioxide)
 ```
 
@@ -196,10 +196,28 @@ From the dataset documentation:
 The 'free.sulfur.dioxide' feature looks normally distrubited around the median 34.00, with a mean of 35.31. The histrogram has a long tail to the right, showing outliers with extreme free sulfur dioxide levels. Based on the discription of from the dataset documentation, this feature acts as a preservative for the wine.
 
 
+```{r echo=FALSE, Univariate_Plots8}
+# Plot total.sulfur.dioxide histogram
+ggplot(aes(x = total.sulfur.dioxide), data = wine) +
+  geom_histogram(bins = 30)
+
+# Plot total.sulfur.dioxide histogram with limits
+ggplot(aes(x = total.sulfur.dioxide), data = wine) +
+  geom_histogram(binwidth = 1) +
+  scale_x_continuous(limits = c(0, 300),
+                     breaks = c(seq(0, 300, by = 20)))
+
+# Get total.sulfur.dioxide statistical values
+summary(wine$total.sulfur.dioxide)
+```
+
 
 From the dataset documentation:
 
 * total sulfur dioxide (mg / dm^3): amount of free and bound forms of S02; in low concentrations, SO2 is mostly undetectable in wine, but at free SO2 concentrations over 50 ppm, SO2 becomes evident in the nose and taste of wine
+
+The 'total.sulfur.dioxide' feature looks normally distrubited around the median 134.00, with a mean of 138.40. The histrogram has a small tail to the right, showing outliers with extreme total sulfur dioxide levels. Based on the discription of from the dataset documentation, the taste of the wine can be affected if the conentration of total sulfur dioxide becomes too high.
+
 
 
 From the dataset documentation:
