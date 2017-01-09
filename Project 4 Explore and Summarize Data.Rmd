@@ -263,12 +263,29 @@ From the dataset documentation:
 The 'pH' level is known to correlate with the taste, from bitter (high pH = basic) to sour (low pH = acidic). The first 'pH' histogram shows a nice Gaussian distribution of the values for 'pH', centered around the median 3.18, with a mean of 3.188. This is the same shape as the 'quality' feature histogram. The more defined, second histogram, shows some interesting spikes in the counts for different 'pH' levels throughout the histogram.
 
 
+```{r echo=FALSE, Univariate_Plots11}
+# Plot sulphates histogram
+ggplot(aes(x = sulphates), data = wine) +
+  geom_histogram(bins = 30)
 
+# Plot sulphates histogram with smaller binwidth
+ggplot(aes(x = sulphates), data = wine) +
+  geom_histogram(binwidth = 0.01) +
+  scale_x_continuous(limits = c(0.2, 1.0),
+                     breaks = c(seq(0.2, 1, by = 0.05)))
+
+# Get sulphates statistical values
+summary(wine$sulphates)
+```
 
 
 From the dataset documentation:
 
 * sulphates (potassium sulphate - g / dm3): a wine additive which can contribute to sulfur dioxide gas (S02) levels, wich acts as an antimicrobial and antioxidant
+
+The 'sulphates' feature looks normally distrubuted around the median 0.4700, with a mean of 0.4898. The histrogram has a long tail to the right, showing outliers with extreme free sulfur dioxide levels. Based on the description of from the dataset documentation, this feature acts as a preservative for the wine.
+
+
 
 
 From the dataset documentation:
