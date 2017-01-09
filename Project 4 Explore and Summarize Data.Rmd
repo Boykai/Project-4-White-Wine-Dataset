@@ -242,10 +242,28 @@ From the dataset documentation:
 The 'density' feature looks normally distrubuted around the median 0.9937, with a mean of 0.9940. The values for wine density within the dataset has some high value outliers, that were cut off when inspecting the second 'density' histogram. Based on the description from the dataset documenation, the wine density is a variable dependent upon the values of alcohol and sugar content.
 
 
+```{r echo=FALSE, Univariate_Plots10}
+# Plot pH histogram
+ggplot(aes(x = pH), data = wine) +
+  geom_histogram(bins = 30)
+
+# Plot pH histogram with smaller binwidth
+ggplot(aes(x = pH), data = wine) +
+  geom_histogram(binwidth = 0.01) +
+  scale_x_continuous(breaks = c(seq(2.7, 3.8, by = 0.1)))
+
+# Get pH statistical values
+summary(wine$pH)
+```
 
 From the dataset documentation:
 
 * pH: describes how acidic or basic a wine is on a scale from 0 (very acidic) to 14 (very basic); most wines are between 3-4 on the pH scale
+
+The 'pH' level is known to correlate with the taste, from bitter (high pH = basic) to sour (low pH = acidic). The first 'pH' histogram shows a nice Gaussian distribution of the values for 'pH', centered around the median 3.18, with a mean of 3.188. This is the same shape as the 'quality' feature histogram. The more defined, second histogram, shows some interesting spikes in the counts for different 'pH' levels throughout the histogram.
+
+
+
 
 
 From the dataset documentation:
