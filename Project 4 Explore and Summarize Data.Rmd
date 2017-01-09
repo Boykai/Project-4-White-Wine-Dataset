@@ -12,10 +12,12 @@ White Wine Dataset - Explore and Summarize Data by James Tooles
 #install.packages('ggplot2', dependencies = T)
 #install.packages('knitr', dependencies = T)
 #install.packages('dplyr', dependencies = T)
+#install.packages('GGally', dependencies = T)
 
 library(ggplot2)
 library(knitr)
 library(dplyr)
+library(GGally)
 ```
 
 
@@ -401,9 +403,20 @@ The quality feature, was shown on a bar graph to highlight the ordinal propery o
 
 # Bivariate Plots Section
 ```{r echo=FALSE, Bivariate_Plots}
+# Get correlation matrix values
+round(cor(wine), 2)
 
+#Set the seed for reproducible results
+set.seed(0)
+
+# Get correlation matrix graph
+theme_set(theme_bw(5))
+wine_subset <- wine[, c(2:13)]
+names(wine_subset)
+ggpairs(wine_subset[sample.int(nrow(wine_subset), 500), ])
 ```
 
+ 
 # Bivariate Analysis
 
 ### Talk about some of the relationships you observed in this part of the investigation. How did the feature(s) of interest vary with other features in the dataset?
