@@ -311,15 +311,30 @@ At the end of the day, wine is an alcoholic product. Perhaps the 'alcohol' conte
 The second histogram of the 'alcohol' feature removes theses smaller 'alcohol' values from the histogram. Both histograms are positively skewed. There is a noticible spike at wine alcohol value 9.5. The median of wine alcohol is 10.40, with a mean of 10.51.
 
 
+```{r echo=FALSE, Univariate_Plots13}
+# Plot quality histogram
+ggplot(aes(x = quality), data = wine) +
+  geom_histogram(bins = 30) +
+  scale_x_continuous(breaks = c(seq(0, 10, by = 1)))
 
+# Plot quality histogram with augmentations
+ggplot(aes(x = quality), data = wine) +
+  geom_histogram(binwidth = 1) +
+  scale_x_continuous(limit = c(0, 10),
+                     breaks = c(seq(0, 10, by = 1)))
 
-
+# Get quality statistical values
+summary(wine$quality)
+```
 
 
 From the dataset documentation:
 
 * quality (score between 0 and 10)
 
+Starting with a default histogram of the 'quality' feature within the 'wine' dataset resembles a Gaussian distribution of the 'quality' feature, centered at a 'quality' value of 6. By increasing the bin size of the histogram allowed a better visual depiction of the dataset, which is slightly positively skewed. These graphs support the findings within the statistical summary for 'quality' with a median value of 6, and a mean value of 5.878.
+
+The dataset documentation states that the 'quality' feature should range from 0-10, unfortuniately all of the wines within this dataset range from 3-9.
 
 
 ### What chemicial properties influence the quality of white wines?
