@@ -272,7 +272,7 @@ ggplot(aes(x = sulphates), data = wine) +
 ggplot(aes(x = sulphates), data = wine) +
   geom_histogram(binwidth = 0.01) +
   scale_x_continuous(limits = c(0.2, 1.0),
-                     breaks = c(seq(0.2, 1, by = 0.05)))
+                     breaks = c(seq(0.2, 1.0, by = 0.05)))
 
 # Get sulphates statistical values
 summary(wine$sulphates)
@@ -286,11 +286,34 @@ From the dataset documentation:
 The 'sulphates' feature looks normally distrubuted around the median 0.4700, with a mean of 0.4898. The histrogram has a long tail to the right, showing outliers with extreme free sulfur dioxide levels. Based on the description of from the dataset documentation, this feature acts as a preservative for the wine.
 
 
+```{r echo=FALSE, Univariate_Plots12}
+# Plot alcohol histogram
+ggplot(aes(x = alcohol), data = wine) +
+  geom_histogram(bins = 30)
+
+# Plot alcohol histogram with cut off lower outliers
+ggplot(aes(x = alcohol), data = wine) +
+  geom_histogram(binwidth = 0.1) +
+  scale_x_continuous(limit = c(8.0, 14.2),
+                     breaks = c(seq(8.0, 14.2, by = 0.5)))
+
+# Get alcohol statistical values
+summary(wine$alcohol)
+```
 
 
 From the dataset documentation:
 
 * alcohol (% by volume): the percent alcohol content of the wine
+
+At the end of the day, wine is an alcoholic product. Perhaps the 'alcohol' content has something to do with the 'quality' value of a wine. The first histogram shows the raw histogram of the 'alcohol' feature. There seem to be a small number of lower outliers.
+
+The second histogram of the 'alcohol' feature removes theses smaller 'alcohol' values from the histogram. Both histograms are positively skewed. There is a noticible spike at wine alcohol value 9.5. The median of wine alcohol is 10.40, with a mean of 10.51.
+
+
+
+
+
 
 
 From the dataset documentation:
