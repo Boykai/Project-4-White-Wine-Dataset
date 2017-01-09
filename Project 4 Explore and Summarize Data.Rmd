@@ -314,12 +314,11 @@ The second histogram of the 'alcohol' feature removes theses smaller 'alcohol' v
 ```{r echo=FALSE, Univariate_Plots13}
 # Plot quality histogram
 ggplot(aes(x = quality), data = wine) +
-  geom_histogram(bins = 30) +
-  scale_x_continuous(breaks = c(seq(0, 10, by = 1)))
+  geom_bar()
 
 # Plot quality histogram with augmentations
 ggplot(aes(x = quality), data = wine) +
-  geom_histogram(binwidth = 1) +
+  geom_bar() +
   scale_x_continuous(limit = c(0, 10),
                      breaks = c(seq(0, 10, by = 1)))
 
