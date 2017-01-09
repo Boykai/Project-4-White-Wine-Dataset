@@ -417,7 +417,7 @@ From a subset of the citric acid, residual sugar, and pH do not seem to have str
 
 
 ```{r echo=FALSE, Bivariate_Plots1}
-# Plot quality scatter quality vs volatile acidity
+# Plot quality scatter quality vs volatile.acidity
 ggplot(aes(x = volatile.acidity, y = quality, colour = quality), data = wine) +
   geom_point(alpha = 0.5, position = position_jitter(width = 0, height = 0.5)) +
   geom_smooth(method = 'lm', color = 'red') +
@@ -432,6 +432,82 @@ cor.test(wine$quality, wine$volatile.acidity)
 
 The high quality wines have a low volatile acidity value, only the sub-par wines have high volatile acidity values. This anaysis only tells us part of the story given the correlation value of -0.195 for quality vs volatile acidity.
 
+
+
+```{r echo=FALSE, Bivariate_Plots2}
+# Plot quality scatter quality vs chlorides
+ggplot(aes(x = chlorides, y = quality, colour = quality), data = wine) +
+  geom_point(alpha = 0.5, position = position_jitter(width = 0, height = 0.5)) +
+  geom_smooth(method = 'lm', color = 'red') +
+  scale_x_continuous(limits = c(0, 0.2),
+                     breaks = c(seq(0, 0.2, by = 0.01))) +
+  scale_y_continuous(breaks = c(seq(0, 10, by = 1)), 
+                     limit = c(3, 9)) 
+
+# Get correlation value
+cor.test(wine$quality, wine$chlorides)
+```
+
+
+The majority of wines have low chlorides values. The high quality wines have a low chlorides value, a large number of average wines have chlorides values. There are a few outliers on the high quality and low quality wines with a large chloirdes value. This anaysis only tells us part of the story given the correlation value of -0.210 for quality vs chlorides.
+
+
+
+
+
+```{r echo=FALSE, Bivariate_Plots3}
+# Plot quality scatter quality vs total.sulfur.dioxide
+ggplot(aes(x = total.sulfur.dioxide, y = quality, colour = quality), data = wine) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = 'lm', color = 'red') +
+  scale_x_continuous(limits = c(0, 300),
+                     breaks = c(seq(0, 300, by = 20))) +
+  scale_y_continuous(breaks = c(seq(0, 10, by = 1)), 
+                     limit = c(3, 9)) 
+
+# Get correlation value
+cor.test(wine$quality, wine$total.sulfur.dioxide)
+```
+
+
+As the quality of the wines increase, the limits for total sulfur dioxide values seem to converge from 80 to 140, with the low quality wines having a much larger variation of total sulfur dioxide values, about 20 to 280. This anaysis only tells us part of the story given the correlation value of -0.175 for quality vs total sulfur dioxide.
+
+
+```{r echo=FALSE, Bivariate_Plots4}
+# Plot quality scatter quality vs density
+ggplot(aes(x = density, y = quality, colour = quality), data = wine) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = 'lm', color = 'red') +
+  scale_x_continuous(limits = c(0.985, 1.005),
+                     breaks = c(seq(0.985, 1.005, by = 0.002))) +
+  scale_y_continuous(breaks = c(seq(0, 10, by = 1)), 
+                     limit = c(3, 9)) 
+
+# Get correlation value
+cor.test(wine$quality, wine$density)
+```
+
+
+The high quality wines have a low density value, only the sub-par wines have high density values. The density and quality of wine has a decent correlation value of -0.307. 
+
+
+
+```{r echo=FALSE, Bivariate_Plots5}
+# Plot quality scatter quality vs alcohol
+ggplot(aes(x = alcohol, y = quality, colour = quality), data = wine) +
+  geom_point(alpha = 0.5, position = position_jitter(width = 0, height = 0.5)) +
+  geom_smooth(method = 'lm', color = 'red') +
+  scale_x_continuous(limit = c(8.0, 14.2),
+                     breaks = c(seq(8.0, 14.2, by = 0.5))) +
+  scale_y_continuous(breaks = c(seq(0, 10, by = 1)), 
+                     limit = c(3, 9)) 
+
+# Get correlation value
+cor.test(wine$quality, wine$alcohol)
+```
+
+
+The high quality wines have a higher alcohol value, only the sub-par wines have lower alcohol values. Only a small portion of wines have high quality and low alcohol content. The quality and acohol features have the highest correlation yet, at a value of 0.436.
 
 
 # Bivariate Analysis
