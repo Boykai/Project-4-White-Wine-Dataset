@@ -755,26 +755,54 @@ The general decrease in variation of the observed features as the wine quality i
 
 
 ### OPTIONAL: Did you create any models with your dataset? Discuss the strengths and limitations of your model.
+
 Yes, a linear model was created for this dataset. The reported R-squared values are extremely low. This is most likey due to the lack of variation within the dataset for the wine quality values. This dataset does not fair well for predictive linear models, when the output feature (wine quality) is so consintrated in <30% of the possible wine quality values.
+
 ------
 
 # Final Plots and Summary
 
 ### Plot One
 ```{r echo=FALSE, warning = FALSE, Plot_One}
+# Plot final quality bar graph
+ggplot(aes(x = quality.cat, fill = quality.cat), data = wine) +
+  geom_bar() +
+  scale_y_continuous(breaks = c(seq(0, 2300, by = 250))) +
+  labs(title = 'Wine Dataset Quality Feature Distribution',
+       x = 'Wine Quality Values', 
+       y = 'Frequency Count') +
+  guides(fill = guide_legend(title="Quality", 
+                             fill = wine$quality.cat, 
+                             reverse = TRUE)) +
+  theme(plot.title = element_text(size=20, face="bold", 
+    margin = margin(10, 0, 10, 0)))
 
 ```
 
 ### Description One
-
+The distribution of wine qualities appears to be normal, centered around 6 but, due to the lack of variation in the wine quality feature, it was difficult to determine what contributes to a high quality or low quality wine, due to the majority of wines in this dataset having an average quality.
 
 ### Plot Two
 ```{r echo=FALSE, warning = FALSE, Plot_Two}
-
+# Plot final scatter density vs alcohol with quality (colour)
+ggplot(aes(x = alcohol, y = density, colour = quality.cat), data = wine) +
+  geom_point(alpha = 0.8, position = position_jitter(width = 0.2, height = 0)) +
+  scale_x_continuous(limit = c(8.0, 14.2),
+                     breaks = c(seq(8.0, 14.2, by = 0.5))) +
+  scale_y_continuous(limits = c(0.987, 1.003),
+                     breaks = c(seq(0.987, 1.003, by = 0.002))) +
+  labs(title = 'Wine Dataset Quality Feature Distribution',
+       x = 'Wine Alcohol Level', 
+       y = 'Wine Density') +
+  scale_color_brewer(type = 'div',
+                     guide = guide_legend(title = 'Quality', reverse = TRUE,
+                                          override.aes = list(alpha = 1, size = 2))) +
+  theme(plot.title = element_text(size=20, face="bold", 
+    margin = margin(10, 0, 10, 0)))
 ```
 
 ### Description Two
-
+The average wine quality is over represented within this wine dataset but with the above graph it is clear that the majority of high quality wines tend to have high alcohol levels and low density levels.
 
 ### Plot Three
 ```{r echo=FALSE, warning = FALSE, Plot_Three}
