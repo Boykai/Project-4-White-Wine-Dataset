@@ -436,9 +436,8 @@ ggplot(aes(x = volatile.acidity, y = quality, colour = quality), data = wine) +
                      limit = c(3, 9)) 
 
 # Plot quality boxplot volatile.acidity vs quality
-ggplot(aes(x = quality, y = volatile.acidity, colour = quality.cat), data = wine) +
+ggplot(aes(x = quality.cat, y = volatile.acidity, colour = quality.cat), data = wine) +
   geom_boxplot() +
-  facet_grid(.~quality) +
   scale_y_continuous(limit = c(0, 0.8),
                      breaks = c(seq(0, 0.8, by = 0.1)))
 
@@ -462,9 +461,8 @@ ggplot(aes(x = chlorides, y = quality, colour = quality), data = wine) +
                      limit = c(3, 9)) 
 
 # Plot quality boxplot chlorides vs quality
-ggplot(aes(x = quality, y = chlorides, colour = quality.cat), data = wine) +
+ggplot(aes(x = quality.cat, y = chlorides, colour = quality.cat), data = wine) +
   geom_boxplot() +
-  facet_grid(.~quality) +
   scale_y_continuous(limits = c(0, 0.15),
                      breaks = c(seq(0, 0.15, by = 0.01)))
 
@@ -490,9 +488,8 @@ ggplot(aes(x = total.sulfur.dioxide, y = quality, colour = quality), data = wine
                      limit = c(3, 9)) 
 
 # Plot quality boxplot total.sulfur.dioxide vs quality
-ggplot(aes(x = quality, y = total.sulfur.dioxide, colour = quality.cat), data = wine) +
+ggplot(aes(x = quality.cat, y = total.sulfur.dioxide, colour = quality.cat), data = wine) +
   geom_boxplot() +
-  facet_grid(.~quality) +
   scale_y_continuous(limits = c(0, 300),
                      breaks = c(seq(0, 300, by = 20)))
 
@@ -515,9 +512,8 @@ ggplot(aes(x = density, y = quality, colour = quality), data = wine) +
                      limit = c(3, 9)) 
 
 # Plot quality boxplot density vs quality
-ggplot(aes(x = quality, y = density, colour = quality.cat), data = wine) +
+ggplot(aes(x = quality.cat, y = density, colour = quality.cat), data = wine) +
   geom_boxplot() +
-  facet_grid(.~quality) +
   scale_y_continuous(limits = c(0.985, 1.005),
                      breaks = c(seq(0.985, 1.005, by = 0.002)))
 
@@ -541,9 +537,8 @@ ggplot(aes(x = alcohol, y = quality, colour = quality), data = wine) +
                      limit = c(3, 9)) 
 
 # Plot quality boxplot alcohol vs quality
-ggplot(aes(x = quality, y = alcohol, colour = quality.cat), data = wine) +
+ggplot(aes(x = quality.cat, y = alcohol, colour = quality.cat), data = wine) +
   geom_boxplot() +
-  facet_grid(~quality) +
   scale_y_continuous(limit = c(8.0, 14.2),
                      breaks = c(seq(8.0, 14.2, by = 0.5)))
 
