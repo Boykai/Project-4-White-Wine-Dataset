@@ -14,13 +14,14 @@ White Wine Dataset - Explore and Summarize Data by James Tooles
 #install.packages('dplyr', dependencies = T)
 #install.packages('GGally', dependencies = T)
 #install.packages('RColorBrewer', dependencies = TRUE) 
-
+#install.packages('memisc', dependencies = TRUE)
 
 library(ggplot2)
 library(knitr)
 library(dplyr)
 library(GGally)
 library(RColorBrewer) 
+library(memisc)
 ```
 
 
@@ -720,14 +721,41 @@ ggplot(aes(x = residual.sugar, y = alcohol, colour = quality.cat), data = wine) 
 The first graph shows us the quality distribution as a function of color, ploted in a alcohol vs residual sugar graph. The graph is then seperated to show the different trends per quality value. The wine quality starts at a value of 3, where the wines are grouped around low alcohol and a variation of residual sugar values. As the wine quality increases, the points tend towards higher alcohol levels and lower residual sugar levels.
 
 
+```{r echo=FALSE, warning = FALSE, Multivariate_Plots3}
+#Create Linear Models
+m1 <- lm(quality ~ fixed.acidity, data = wine)
+m2 <- update(m1, ~ . + volatile.acidity)
+m3 <- update(m2, ~ . + citric.acid)
+m4 <- update(m3, ~ . + residual.sugar)
+m5 <- update(m4, ~ . + chlorides)
+m6 <- update(m5, ~ . + free.sulfur.dioxide)
+m7 <- update(m6, ~ . + total.sulfur.dioxide)
+m8 <- update(m7, ~ . + density)
+m9 <- update(m8, ~ . + pH)
+m10 <- update(m9, ~ . + sulphates)
+m11 <- update(m10, ~ . + alcohol)
+mtable(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, sdigits = 3)
+```
+
+
+The linear model created has extremely low R-squared values. This could be due to the diversity of the dataset given in the original wine dataset. The majority of the data given has a wine quality value of 5, 6, 7. Shown in the quality bar graph in the Univariate section. Having a more diverse dataset would lead to a better modeling of the data.
+
+
 # Multivariate Analysis
 
-### Talk about some of the relationships you observed in this part of the investigation. Were there features that strengthened each other in terms of looking at your feature(s) of interest?
+### Talk about some of the relationships you observed in this part of the investigation. Were there features that strengthened each other in terms of looking at your feature of interest?
+The density vs alcohol graph showing the quality of the wines was insightful. There seemed to be an overall trend, as you can see the shifting of plot points as the quality of wine increases.
+
+The density vs residual sugar graph showing the quality of the wines, highlighted the variation of wines with low wine quality, while the high quality wines seemed to converge around a similiar density/residual sugar ratio.
+
+The alcohol vs residual sugar graph was a mix between the treds shown in the first two graphs in reference to the wine quality values. As the wine quality increased, the movement trend of the alcohol/residual sugar ratio was shown, as well as a decrease in variation of the feature values as the wine quality increased.
 
 ### Were there any interesting or surprising interactions between features?
+The general decrease in variation of the observed features as the wine quality increased was interesting. From this dataset it showed that as the wine quality increases the wine features converge to a given range of feature values, for the observed features.
+
 
 ### OPTIONAL: Did you create any models with your dataset? Discuss the strengths and limitations of your model.
-
+Yes, a linear model was created for this dataset. The reported R-squared values are extremely low. This is most likey due to the lack of variation within the dataset for the wine quality values. This dataset does not fair well for predictive linear models, when the output feature (wine quality) is so consintrated in <30% of the possible wine quality values.
 ------
 
 # Final Plots and Summary
