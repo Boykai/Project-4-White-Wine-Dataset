@@ -347,8 +347,9 @@ The dataset documentation states that the 'quality' feature should range from 0-
 
 # Univariate Analysis
 
+
 ### What is the structure of your dataset?
-There are 4898 wines of 13 features (x, fixed.acidity, volatile.acidity, citric.acid, residual.sugar, cholorides, free.sulfur.dioxide, total.sulfur.dioxide, density, pH, sulphates, alcohol, quality). All of these variables are given as quanitavive variables.
+There are 4898 wines of 13 features (x, fixed.acidity, volatile.acidity, citric.acid, residual.sugar, chlorides, free.sulfur.dioxide, total.sulfur.dioxide, density, pH, sulphates, alcohol, quality). All of these variables are given as quantitative variables.
 
 * **X**: a unique id identifier for each wine
 
@@ -370,7 +371,7 @@ There are 4898 wines of 13 features (x, fixed.acidity, volatile.acidity, citric.
 
 * **pH**: describes how acidic or basic a wine is on a scale from 0 (very acidic) to 14 (very basic); most wines are between 3-4 on the pH scale
 
-* **sulphates**: a wine additive which can contribute to sulfur dioxide gas (S02) levels, wich acts as an antimicrobial and antioxidant
+* **sulphates**: a wine additive which can contribute to sulfur dioxide gas (S02) levels, which acts as an antimicrobial and antioxidant
 
 * **alcohol**: the percent alcohol content of the wine
 
@@ -379,27 +380,28 @@ There are 4898 wines of 13 features (x, fixed.acidity, volatile.acidity, citric.
 
 Other observations:
 
-* The 'quality' distrubution is approximately normal
+* The 'quality' distribution is approximately normal
 * The median 'quality' value is 6.0
 * Citric acid has a spike in wine count at a value of 0.5
 
 ### What are the main features of interest in your dataset?
-The main features of interest are any features that significatly contribute to the quality output value. The goal of this analysis is to determine which features are best for predicting the quality of a wine.
+The main features of interest are any features that significantly contribute to the quality output value. The goal of this analysis is to determine which features are best for predicting the quality of a wine.
 
 ### What other features in the dataset do you think will help support your investigation into your feature of interest?
 Volatile acidity, citric acid, residual sugar, chlorides, total sulfur dioxide, pH, and alcohol. All of these features are described in the dataset documentation as to affect the taste, smell, or other measurements of value to consumers such as alcohol content.
 
-The other features such as, fixed acidity, free sulfur dioxide, density, sulphates, do not seem to play a role in determining quality value due to the description given within the dataset documentation. All of thease features are either dependent upon other features of interest, preservatives, or do not show enough variance to be heavily weighted in determining wine quality.
+The other features such as, fixed acidity, free sulfur dioxide, density, sulphates, do not seem to play a role in determining quality value due to the description given within the dataset documentation. All of these features are either dependent upon other features of interest, preservatives, or do not show enough variance to be heavily weighted in determining wine quality.
 
 ### Did you create any new variables from existing variables in the dataset?
-Yes, a catagoricial feature of quality was created called 'quality.cat'.
+Yes, a categorical feature of quality was created called 'quality.cat'.
 
 ### Of the features you investigated, were there any unusual distributions? Did you perform any operations on the data to tidy, adjust, or change the form of the data? If so, why did you do this?
 The citric acid feature has a spike in wine count at a value of 0.5, this seems odd and interesting and will be investigated for any impact in wine quality within the bivariate section.
 
 All of the features were limited, outliers removed, and/or parsed in more visual detail to see any hidden attributes within the feature.
 
-The quality feature, was shown on a bar graph to highlight the ordinal propery of the feature.
+The quality feature, was shown on a bar graph to highlight the ordinal property of the feature.
+
 
 
 # Bivariate Plots Section
@@ -420,7 +422,7 @@ ggpairs(wine_subset[sample.int(nrow(wine_subset), 500), ])
 ```
 
 
-From a subset of the citric acid, residual sugar, and pH do not seem to have strong correlations with quality, but volatile acidity, chlorides, total sulfur dioxide, density, and alcohol are moderately correlated with quality. I want to look closer at scatter plots involving quality and some other variables like volatile acidity, chorides, density, and alcohol.
+From a subset of the citric acid, residual sugar, and pH do not seem to have strong correlations with quality, but volatile acidity, chlorides, total sulfur dioxide, density, and alcohol are moderately correlated with quality. I want to look closer at scatter plots involving quality and some other variables like volatile acidity, chlorides, density, and alcohol.
 
 
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots1}
@@ -446,7 +448,7 @@ cor.test(wine$quality, wine$volatile.acidity)
 ```
 
 
-The high quality wines have a low volatile acidity value, only the sub-par wines have high volatile acidity values. This anaysis only tells us part of the story given the correlation value of -0.195 for quality vs volatile acidity.
+The high quality wines have a low volatile acidity value, only the sub-par wines have high volatile acidity values. This analysis only tells us part of the story given the correlation value of -0.195 for quality vs volatile acidity.
 
 
 
@@ -471,10 +473,7 @@ cor.test(wine$quality, wine$chlorides)
 ```
 
 
-The majority of wines have low chlorides values. The high quality wines have a low chlorides value, a large number of average wines have high chlorides values. There are a few outliers on the high quality and low quality wines with a large chloirdes value. This anaysis only tells us part of the story given the correlation value of -0.210 for quality vs chlorides.
-
-
-
+The majority of wines have low chlorides values. The high quality wines have a low chlorides value; a large number of average wines have high chlorides values. There are a few outliers on the high quality and low quality wines with a large chlorides value. This analysis only tells us part of the story given the correlation value of -0.210 for quality vs chlorides.
 
 
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots3}
@@ -498,7 +497,7 @@ cor.test(wine$quality, wine$total.sulfur.dioxide)
 ```
 
 
-As the quality of the wines increase, the limits for total sulfur dioxide values seem to converge from 80 to 140, with the low quality wines having a much larger variation of total sulfur dioxide values, about 20 to 280. This anaysis only tells us part of the story given the correlation value of -0.175 for quality vs total sulfur dioxide.
+As the quality of the wines increase, the limits for total sulfur dioxide values seem to converge from 80 to 140, with the low quality wines having a much larger variation of total sulfur dioxide values, about 20 to 280. This analysis only tells us part of the story given the correlation value of -0.175 for quality vs total sulfur dioxide.
 
 
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots4}
@@ -547,7 +546,7 @@ cor.test(wine$quality, wine$alcohol)
 ```
 
 
-The high quality wines have a higher alcohol value, only the sub-par wines have lower alcohol values. Only a small portion of wines have high quality and low alcohol content. The quality and acohol features have the highest correlation yet, at a value of 0.436.
+The high quality wines have a higher alcohol value, only the sub-par wines have lower alcohol values. Only a small portion of wines have high quality and low alcohol content. The quality and alcohol features have the highest correlation yet, at a value of 0.436.
 
 
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots6}
@@ -564,7 +563,7 @@ ggplot(aes(x = alcohol, y = density), data = wine) +
 cor.test(wine$density, wine$alcohol)
 ```
 
-As the alcohol values increase, the desity decreases. This could be due to alcohol having a lower density than the rest of the wine content, there fore bringing down the overall density of the wine. Alcohol and density have a strong negative correlation value of -0.780.
+As the alcohol values increase, the density decreases. This could be due to alcohol having a lower density than the rest of the wine content, therefore bringing down the overall density of the wine. Alcohol and density have a strong negative correlation value of -0.780.
 
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots7}
 # Plot scatter density vs residual.sugar
@@ -581,7 +580,7 @@ cor.test(wine$density, wine$residual.sugar)
 ```
 
 
-The residual sugar and density have a strong positive correlation of 0.839. As the residual sugar increases, the density increases. This could be due to the fact that residual sugar has a higher density compared to the remaining wine content. This could also be related to the fact that during fermination, sugar is turned into alcohol. So the less sugar turned into lower density alcohol, the higher the density of the wine.
+The residual sugar and density have a strong positive correlation of 0.839. As the residual sugar increases, the density increases. This could be due to the fact that residual sugar has a higher density compared to the remaining wine content. This could also be related to the fact that during fermentation, sugar is turned into alcohol. So the less sugar turned into lower density alcohol, the higher the density of the wine.
 
 
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots8}
@@ -600,7 +599,9 @@ cor.test(wine$alcohol, wine$residual.sugar)
 
 The alcohol content and residual.sugar have a moderate negative correlation of -0.451. As the residual sugar increases, the alcohol content decreases. This is most likely due to the fermination process of making acohol, which consumes sugar to produce alcohol.
 
+
 # Bivariate Analysis
+
 
 ### Talk about some of the relationships you observed in this part of the investigation. How did the features of interest vary with other features in the dataset?
 The relationship between volatile acidity and quality of wines has a parabolic shape, in the sense that the low and high quality wines have a higher level of volatile acidity, while the average wines have a lower volatile acidity.
@@ -614,13 +615,14 @@ The wine density decreases as the wine quality increase, with a significant drop
 As the median alcohol level increases, the wine quality increases. The alcohol feature has the highest correlation with wine quality out of all of the given features.
 
 ### Did you observe any interesting relationships between the other features (not the main features) of interest)?
-The density, alcohol, and residual sugar features seem to be highly correlated with eachother. The alcohol is created by consuming sugar during the fermination process, and the more alcohol within the wine the lower the density of the wine given the density of the alcohol relatived to residual sugar and the remaining wine content.
+The density, alcohol, and residual sugar features seem to be highly correlated with each other. The alcohol is created by consuming sugar during the fermentation process, and the more alcohol within the wine the lower the density of the wine given the density of the alcohol relative to residual sugar and the remaining wine content.
 
 ### What was the strongest relationship you found?
 The relationships between the wine features of density and alcohol, alcohol and residual sugar, residual sugar and alcohol, and alcohol and quality.
 
 
 # Multivariate Plots Section
+
 
 ```{r echo=FALSE, warning = FALSE, Multivariate_Plots0}
 
@@ -637,7 +639,7 @@ ggplot(aes(x = alcohol, y = density, colour = quality.cat), data = wine) +
                      breaks = c(seq(0.985, 1.005, by = 0.002)))
 
 
-# Plot scatter density vs alcohol with quality (colour - seperated) 
+# Plot scatter density vs alcohol with quality (colour - separated) 
 ggplot(aes(x = alcohol, y = density, colour = quality.cat), data = wine) +
   geom_point(position = position_jitter(width = 0.2, height = 0)) +
   scale_color_brewer(type = 'div',
@@ -651,7 +653,7 @@ ggplot(aes(x = alcohol, y = density, colour = quality.cat), data = wine) +
 ```
 
 
-The first graph shows us the quality distribution as a function of color, ploted in a density vs alcohol graph. The graph is then seperated to show the different trends per quality value. The wine quality starts at a value of 3, where the wines are grouped around high density and low alcohol values. As the wine quality increases, the points tend towards higher alcohol levels and lower density levels.
+The first graph shows us the quality distribution as a function of color, plotted in a density vs alcohol graph. The graph is then separated to show the different trends per quality value. The wine quality starts at a value of 3, where the wines are grouped around high density and low alcohol values. As the wine quality increases, the points tend towards higher alcohol levels and lower density levels.
 
 
 
@@ -668,7 +670,7 @@ ggplot(aes(x = residual.sugar, y = density, colour = quality.cat), data = wine) 
                      breaks = c(seq(0.985, 1.005, by = 0.002)))
 
 
-# Plot scatter density vs residual.sugar with quality (colour - seperated) 
+# Plot scatter density vs residual.sugar with quality (colour - separated) 
 ggplot(aes(x = residual.sugar, y = density, colour = quality.cat), data = wine) +
   geom_point(position = position_jitter(width = 0.2, height = 0)) +
   scale_color_brewer(type = 'div',
@@ -699,7 +701,7 @@ ggplot(aes(x = residual.sugar, y = alcohol, colour = quality.cat), data = wine) 
                      breaks = c(seq(8.0, 14.2, by = 0.5)))
 
 
-# Plot scatter alcohol vs residual.sugar with quality (colour - seperated) 
+# Plot scatter alcohol vs residual.sugar with quality (colour - separated) 
 ggplot(aes(x = residual.sugar, y = alcohol, colour = quality.cat), data = wine) +
   geom_point(position = position_jitter(width = 0.2, height = 0)) +
   scale_color_brewer(type = 'div',
@@ -713,7 +715,7 @@ ggplot(aes(x = residual.sugar, y = alcohol, colour = quality.cat), data = wine) 
 ```
 
 
-The first graph shows us the quality distribution as a function of color, ploted in a alcohol vs residual sugar graph. The graph is then seperated to show the different trends per quality value. The wine quality starts at a value of 3, where the wines are grouped around low alcohol and a variation of residual sugar values. As the wine quality increases, the points tend towards higher alcohol levels and lower residual sugar levels.
+The first graph shows us the quality distribution as a function of color, plotted in a alcohol vs residual sugar graph. The graph is then separated to show the different trends per quality value. The wine quality starts at a value of 3, where the wines are grouped around low alcohol and a variation of residual sugar values. As the wine quality increases, the points tend towards higher alcohol levels and lower residual sugar levels.
 
 
 ```{r echo=FALSE, warning = FALSE, Multivariate_Plots3}
@@ -741,9 +743,9 @@ The linear model created has extremely low R-squared values. This could be due t
 ### Talk about some of the relationships you observed in this part of the investigation. Were there features that strengthened each other in terms of looking at your feature of interest?
 The density vs alcohol graph showing the quality of the wines was insightful. There seemed to be an overall trend, as you can see the shifting of plot points as the quality of wine increases.
 
-The density vs residual sugar graph showing the quality of the wines, highlighted the variation of wines with low wine quality, while the high quality wines seemed to converge around a similiar density/residual sugar ratio.
+The density vs residual sugar graph showing the quality of the wines, highlighted the variation of wines with low wine quality, while the high quality wines seemed to converge around a similar density/residual sugar ratio.
 
-The alcohol vs residual sugar graph was a mix between the treds shown in the first two graphs in reference to the wine quality values. As the wine quality increased, the movement trend of the alcohol/residual sugar ratio was shown, as well as a decrease in variation of the feature values as the wine quality increased.
+The alcohol vs residual sugar graph was a mix between the trends shown in the first two graphs in reference to the wine quality values. As the wine quality increased, the movement trend of the alcohol/residual sugar ratio was shown, as well as a decrease in variation of the feature values as the wine quality increased.
 
 ### Were there any interesting or surprising interactions between features?
 The general decrease in variation of the observed features as the wine quality increased was interesting. From this dataset it showed that as the wine quality increases the wine features converge to a given range of feature values, for the observed features.
@@ -751,11 +753,13 @@ The general decrease in variation of the observed features as the wine quality i
 
 ### OPTIONAL: Did you create any models with your dataset? Discuss the strengths and limitations of your model.
 
-Yes, a linear model was created for this dataset. The reported R-squared values are extremely low. This is most likey due to the lack of variation within the dataset for the wine quality values. This dataset does not fair well for predictive linear models, when the output feature (wine quality) is so consintrated in <30% of the possible wine quality values.
+Yes, a linear model was created for this dataset. The reported R-squared values are extremely low. This is most likely due to the lack of variation within the dataset for the wine quality values. This dataset does not fair well for predictive linear models, when the output feature (wine quality) is so concentrated in <30% of the possible wine quality values.
 
 ------
 
+
 # Final Plots and Summary
+
 
 ### Plot One
 ```{r echo=FALSE, warning = FALSE, Plot_One}
@@ -774,10 +778,14 @@ ggplot(aes(x = quality.cat, fill = quality.cat), data = wine) +
 
 ```
 
+
 ### Description One
 The distribution of wine qualities appears to be normal, centered around 6 but, due to the lack of variation in the wine quality feature, it was difficult to determine what contributes to a high quality or low quality wine, due to the majority of wines in this dataset having an average quality.
 
+
 ### Plot Two
+
+
 ```{r echo=FALSE, warning = FALSE, Plot_Two}
 # Plot final scatter density vs alcohol with quality (colour)
 ggplot(aes(x = alcohol, y = density, colour = quality.cat), data = wine) +
@@ -796,10 +804,14 @@ ggplot(aes(x = alcohol, y = density, colour = quality.cat), data = wine) +
     margin = margin(10, 0, 10, 0)))
 ```
 
+
 ### Description Two
 The average wine quality is over represented within this wine dataset but with the above graph it is clear that the majority of high quality wines tend to have high alcohol levels and low density levels.
 
+
 ### Plot Three
+
+
 ```{r echo=FALSE, warning = FALSE, Plot_Three}
 # Plot final quality boxplot alcohol vs quality
 theme_set(theme_minimal(9))
@@ -818,10 +830,13 @@ ggplot(aes(x = quality.cat, y = alcohol, fill = quality.cat), data = wine) +
     margin = margin(10, 0, 10, 0)))
 ```
 
+
 ### Description Three
-The alcohol level of a wine by volume tends to be positively correlated and increase with the wine quality level. Generally, ithin the dataset given, the higher the median alcohol value, the higher the quality of wine.
+The alcohol level of a wine by volume tends to be positively correlated and increase with the wine quality level. Generally, in the dataset given, the higher the median alcohol value, the higher the quality of wine.
+
 
 ------
+
 
 # Reflection
 The white wine data set contains information on almost 5,000 wines, with 12 different features, and was created in 2009. I started by observing the distributions of each feature within the dataset. From there I took note of any trends, abnormalities, and possible insights into the meanings behind the features. I then started cross plotting and correlating the different features with quality, and some of the features with other input features given in the dataset. Finally, I explored the additive effects of features on the overall wine quality feature and created a linear model to better understand the dataset.
