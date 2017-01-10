@@ -13,11 +13,14 @@ White Wine Dataset - Explore and Summarize Data by James Tooles
 #install.packages('knitr', dependencies = T)
 #install.packages('dplyr', dependencies = T)
 #install.packages('GGally', dependencies = T)
+#install.packages('RColorBrewer', dependencies = TRUE) 
+
 
 library(ggplot2)
 library(knitr)
 library(dplyr)
 library(GGally)
+library(RColorBrewer) 
 ```
 
 
@@ -55,6 +58,9 @@ ggplot(aes(x = X, y = X), data = wine) +
 
 # Get X statistical values
 summary(wine$X)
+
+# Created categorical variable for 'quality'
+wine$quality.cat <- as.factor(wine$quality)
 ```
 
 
@@ -314,11 +320,11 @@ The second histogram of the 'alcohol' feature removes theses smaller 'alcohol' v
 
 
 ```{r echo=FALSE, warning = FALSE, Univariate_Plots13}
-# Plot quality histogram
-ggplot(aes(x = quality), data = wine) +
+# Plot quality bar graph
+ggplot(aes(x = quality.cat), data = wine) +
   geom_bar()
 
-# Plot quality histogram with augmentations
+# Plot quality bar graph with augmentations
 ggplot(aes(x = quality), data = wine) +
   geom_bar() +
   scale_x_continuous(limit = c(0, 10),
@@ -385,7 +391,7 @@ Volatile acidity, citric acid, residual sugar, chlorides, total sulfur dioxide, 
 The other features such as, fixed acidity, free sulfur dioxide, density, sulphates, do not seem to play a role in determining quality value due to the description given within the dataset documentation. All of thease features are either dependent upon other features of interest, preservatives, or do not show enough variance to be heavily weighted in determining wine quality.
 
 ### Did you create any new variables from existing variables in the dataset?
-No new variables were created in this tidy wine dataset.
+Yes, a catagoricial feature of quality was created called 'quality.cat'.
 
 ### Of the features you investigated, were there any unusual distributions? Did you perform any operations on the data to tidy, adjust, or change the form of the data? If so, why did you do this?
 The citric acid feature has a spike in wine count at a value of 0.5, this seems odd and interesting and will be investigated for any impact in wine quality within the bivariate section.
@@ -429,7 +435,7 @@ ggplot(aes(x = volatile.acidity, y = quality, colour = quality), data = wine) +
                      limit = c(3, 9)) 
 
 # Plot quality boxplot volatile.acidity vs quality
-ggplot(aes(x = quality, y = volatile.acidity, colour = quality), data = wine) +
+ggplot(aes(x = quality, y = volatile.acidity, colour = quality.cat), data = wine) +
   geom_boxplot() +
   facet_grid(.~quality) +
   scale_y_continuous(limit = c(0, 0.8),
@@ -455,7 +461,7 @@ ggplot(aes(x = chlorides, y = quality, colour = quality), data = wine) +
                      limit = c(3, 9)) 
 
 # Plot quality boxplot chlorides vs quality
-ggplot(aes(x = quality, y = chlorides, colour = quality), data = wine) +
+ggplot(aes(x = quality, y = chlorides, colour = quality.cat), data = wine) +
   geom_boxplot() +
   facet_grid(.~quality) +
   scale_y_continuous(limits = c(0, 0.15),
@@ -483,7 +489,7 @@ ggplot(aes(x = total.sulfur.dioxide, y = quality, colour = quality), data = wine
                      limit = c(3, 9)) 
 
 # Plot quality boxplot total.sulfur.dioxide vs quality
-ggplot(aes(x = quality, y = total.sulfur.dioxide, colour = quality), data = wine) +
+ggplot(aes(x = quality, y = total.sulfur.dioxide, colour = quality.cat), data = wine) +
   geom_boxplot() +
   facet_grid(.~quality) +
   scale_y_continuous(limits = c(0, 300),
@@ -508,7 +514,7 @@ ggplot(aes(x = density, y = quality, colour = quality), data = wine) +
                      limit = c(3, 9)) 
 
 # Plot quality boxplot density vs quality
-ggplot(aes(x = quality, y = density, colour = quality), data = wine) +
+ggplot(aes(x = quality, y = density, colour = quality.cat), data = wine) +
   geom_boxplot() +
   facet_grid(.~quality) +
   scale_y_continuous(limits = c(0.985, 1.005),
@@ -534,9 +540,9 @@ ggplot(aes(x = alcohol, y = quality, colour = quality), data = wine) +
                      limit = c(3, 9)) 
 
 # Plot quality boxplot alcohol vs quality
-ggplot(aes(x = quality, y = alcohol, colour = quality), data = wine) +
+ggplot(aes(x = quality, y = alcohol, colour = quality.cat), data = wine) +
   geom_boxplot() +
-  facet_grid(.~quality) +
+  facet_grid(~quality) +
   scale_y_continuous(limit = c(8.0, 14.2),
                      breaks = c(seq(8.0, 14.2, by = 0.5)))
 
@@ -611,7 +617,7 @@ The wine density decreases as the wine quality increase, with a significant drop
 
 As the median alcohol level increases, the wine quality increases. The alcohol feature has the highest correlation with wine quality out of all of the given features.
 
-### Did you observe any interesting relationships between the other features (not the main feature(s) of interest)?
+### Did you observe any interesting relationships between the other features (not the main features) of interest)?
 The density, alcohol, and residual sugar features seem to be highly correlated with eachother. The alcohol is created by consuming sugar during the fermination process, and the more alcohol within the wine the lower the density of the wine given the density of the alcohol relatived to residual sugar and the remaining wine content.
 
 ### What was the strongest relationship you found?
@@ -620,9 +626,99 @@ The relationships between the wine features of density and alcohol, alcohol and 
 
 # Multivariate Plots Section
 
-```{r echo=FALSE, warning = FALSE, Multivariate_Plots}
+```{r echo=FALSE, warning = FALSE, Multivariate_Plots0}
 
+# Plot scatter density vs alcohol with quality (colour)
+theme_set(theme_dark(9))
+ggplot(aes(x = alcohol, y = density, colour = quality.cat), data = wine) +
+  geom_point(position = position_jitter(width = 0.2, height = 0)) +
+  scale_color_brewer(type = 'div',
+                     guide = guide_legend(title = 'Quality', reverse = TRUE,
+                                          override.aes = list(alpha = 1, size = 2))) +
+  scale_x_continuous(limit = c(8.0, 14.2),
+                     breaks = c(seq(8.0, 14.2, by = 0.5))) +
+  scale_y_continuous(limits = c(0.985, 1.005),
+                     breaks = c(seq(0.985, 1.005, by = 0.002)))
+
+
+# Plot scatter density vs alcohol with quality (colour - seperated) 
+ggplot(aes(x = alcohol, y = density, colour = quality.cat), data = wine) +
+  geom_point(position = position_jitter(width = 0.2, height = 0)) +
+  scale_color_brewer(type = 'div',
+                     guide = guide_legend(title = 'Quality', reverse = TRUE,
+                                          override.aes = list(alpha = 1, size = 2))) +
+  scale_x_continuous(limit = c(8.0, 14.2),
+                     breaks = c(seq(8.0, 14.2, by = 0.5))) +
+  scale_y_continuous(limits = c(0.985, 1.005),
+                     breaks = c(seq(0.985, 1.005, by = 0.002))) +
+  facet_wrap(~quality.cat)
 ```
+
+
+The first graph shows us the quality distribution as a function of color, ploted in a density vs alcohol graph. The graph is then seperated to show the different trends per quality value. The wine quality starts at a value of 3, where the wines are grouped around high density and low alcohol values. As the wine quality increases, the points tend towards higher alcohol levels and lower density levels.
+
+
+
+```{r echo=FALSE, warning = FALSE, Multivariate_Plots1}
+# Plot scatter density vs residual.sugar with quality (colour)
+ggplot(aes(x = residual.sugar, y = density, colour = quality.cat), data = wine) +
+  geom_point(position = position_jitter(width = 0.2, height = 0)) +
+  scale_color_brewer(type = 'div',
+                     guide = guide_legend(title = 'Quality', reverse = TRUE,
+                                          override.aes = list(alpha = 1, size = 2))) +
+  scale_x_continuous(limits = c(0, 21),
+                     breaks = c(seq(0, 21, by = 1))) +
+  scale_y_continuous(limits = c(0.985, 1.005),
+                     breaks = c(seq(0.985, 1.005, by = 0.002)))
+
+
+# Plot scatter density vs residual.sugar with quality (colour - seperated) 
+ggplot(aes(x = residual.sugar, y = density, colour = quality.cat), data = wine) +
+  geom_point(position = position_jitter(width = 0.2, height = 0)) +
+  scale_color_brewer(type = 'div',
+                     guide = guide_legend(title = 'Quality', reverse = TRUE,
+                                          override.aes = list(alpha = 1, size = 2))) +
+  scale_x_continuous(limits = c(0, 21),
+                     breaks = c(seq(0, 21, by = 1))) +
+  scale_y_continuous(limits = c(0.985, 1.005),
+                     breaks = c(seq(0.985, 1.005, by = 0.002))) +
+  facet_wrap(~quality.cat)
+```
+
+
+The residual sugar and density relationships have extremely high variation, except at the highest quality level. The majority of wine quality 9, have both low residual sugar and density.
+
+
+
+```{r echo=FALSE, warning = FALSE, Multivariate_Plots2}
+# Plot scatter alcohol vs residual.sugar with quality (colour)
+ggplot(aes(x = residual.sugar, y = alcohol, colour = quality.cat), data = wine) +
+  geom_point() +
+  scale_color_brewer(type = 'div',
+                     guide = guide_legend(title = 'Quality', reverse = TRUE,
+                                          override.aes = list(alpha = 1, size = 2))) +
+  scale_x_continuous(limits = c(0, 21),
+                     breaks = c(seq(0, 21, by = 1))) +
+  scale_y_continuous(limit = c(8.0, 14.2),
+                     breaks = c(seq(8.0, 14.2, by = 0.5)))
+
+
+# Plot scatter alcohol vs residual.sugar with quality (colour - seperated) 
+ggplot(aes(x = residual.sugar, y = alcohol, colour = quality.cat), data = wine) +
+  geom_point(position = position_jitter(width = 0.2, height = 0)) +
+  scale_color_brewer(type = 'div',
+                     guide = guide_legend(title = 'Quality', reverse = TRUE,
+                                          override.aes = list(alpha = 1, size = 2))) +
+  scale_x_continuous(limits = c(0, 21),
+                     breaks = c(seq(0, 21, by = 1))) +
+  scale_y_continuous(limit = c(8.0, 14.2),
+                     breaks = c(seq(8.0, 14.2, by = 0.5))) +
+  facet_wrap(~quality.cat)
+```
+
+
+The first graph shows us the quality distribution as a function of color, ploted in a alcohol vs residual sugar graph. The graph is then seperated to show the different trends per quality value. The wine quality starts at a value of 3, where the wines are grouped around low alcohol and a variation of residual sugar values. As the wine quality increases, the points tend towards higher alcohol levels and lower residual sugar levels.
+
 
 # Multivariate Analysis
 
