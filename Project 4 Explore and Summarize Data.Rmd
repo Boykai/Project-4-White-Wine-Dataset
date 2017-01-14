@@ -424,7 +424,7 @@ From a subset of the citric acid, residual sugar, and pH do not seem to have str
 theme_set(theme_minimal(9))
 
 # Plot quality scatter quality vs volatile.acidity
-ggplot(aes(x = volatile.acidity, y = quality, colour = quality), data = wine) +
+ggplot(aes(x = volatile.acidity, y = quality), data = wine) +
   geom_point(alpha = 0.5, position = position_jitter(width = 0, height = 0.5)) +
   geom_smooth(method = 'lm', color = 'red') +
   scale_x_continuous(breaks = c(seq(0, 1.10, by = 0.1))) +
@@ -448,7 +448,7 @@ The high quality wines have a low volatile acidity value, only the sub-par wines
 
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots2}
 # Plot quality scatter quality vs chlorides
-ggplot(aes(x = chlorides, y = quality, colour = quality), data = wine) +
+ggplot(aes(x = chlorides, y = quality), data = wine) +
   geom_point(alpha = 0.5, position = position_jitter(width = 0, height = 0.5)) +
   geom_smooth(method = 'lm', color = 'red') +
   scale_x_continuous(limits = c(0, 0.2),
@@ -472,8 +472,8 @@ The majority of wines have low chlorides values. The high quality wines have a l
 
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots3}
 # Plot quality scatter quality vs total.sulfur.dioxide
-ggplot(aes(x = total.sulfur.dioxide, y = quality, colour = quality), data = wine) +
-  geom_point(alpha = 0.5) +
+ggplot(aes(x = total.sulfur.dioxide, y = quality), data = wine) +
+  geom_point(alpha = 0.5, position = position_jitter(width = 0, height = 0.5)) +
   geom_smooth(method = 'lm', color = 'red') +
   scale_x_continuous(limits = c(0, 300),
                      breaks = c(seq(0, 300, by = 20))) +
@@ -496,8 +496,8 @@ As the quality of the wines increase, the limits for total sulfur dioxide values
 
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots4}
 # Plot quality scatter quality vs density
-ggplot(aes(x = density, y = quality, colour = quality), data = wine) +
-  geom_point(alpha = 0.5) +
+ggplot(aes(x = density, y = quality), data = wine) +
+  geom_point(alpha = 0.5, position = position_jitter(width = 0, height = 0.5)) +
   geom_smooth(method = 'lm', color = 'red') +
   scale_x_continuous(limits = c(0.985, 1.005),
                      breaks = c(seq(0.985, 1.005, by = 0.002))) +
@@ -521,7 +521,7 @@ The high quality wines have a low density value, only the sub-par wines have hig
 
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots5}
 # Plot quality scatter quality vs alcohol
-ggplot(aes(x = alcohol, y = quality, colour = quality), data = wine) +
+ggplot(aes(x = alcohol, y = quality), data = wine) +
   geom_point(alpha = 0.5, position = position_jitter(width = 0, height = 0.5)) +
   geom_smooth(method = 'lm', color = 'red') +
   scale_x_continuous(limit = c(8.0, 14.2),
