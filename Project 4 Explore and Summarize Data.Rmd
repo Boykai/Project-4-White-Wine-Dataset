@@ -522,7 +522,7 @@ The high quality wines have a low density value, only the sub-par wines have hig
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots5}
 # Plot quality scatter quality vs alcohol
 ggplot(aes(x = alcohol, y = quality), data = wine) +
-  geom_point(alpha = 0.5, position = position_jitter(width = 0, height = 0.5)) +
+  geom_point(alpha = 0.5, position = position_jitter(width = 0.1, height = 0.5)) +
   geom_smooth(method = 'lm', color = 'red') +
   scale_x_continuous(limit = c(8.0, 14.2),
                      breaks = c(seq(8.0, 14.2, by = 0.5))) +
@@ -546,7 +546,7 @@ The high quality wines have a higher alcohol value, only the sub-par wines have 
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots6}
 # Plot scatter density vs alcohol
 ggplot(aes(x = alcohol, y = density), data = wine) +
-  geom_point(alpha = 0.5) +
+  geom_point(alpha = 0.5, position = position_jitter(width = 0.1)) +
   geom_smooth(method = 'lm', color = 'red') +
   scale_x_continuous(limit = c(8.0, 14.2),
                      breaks = c(seq(8.0, 14.2, by = 0.5))) +
@@ -580,7 +580,7 @@ The residual sugar and density have a strong positive correlation of 0.839. As t
 ```{r echo=FALSE, warning = FALSE, Bivariate_Plots8}
 # Plot scatter alcohol vs residual.sugar
 ggplot(aes(x = residual.sugar, y = alcohol), data = wine) +
-  geom_point(alpha = 0.5) +
+  geom_point(alpha = 0.5, position = position_jitter(width = 0, height = 0.1)) +
   geom_smooth(method = 'lm', color = 'red') +
   scale_x_continuous(limits = c(0, 21),
                      breaks = c(seq(0, 21, by = 1))) +
@@ -685,7 +685,7 @@ The residual sugar and density relationships have extremely high variation, exce
 ```{r echo=FALSE, warning = FALSE, Multivariate_Plots2}
 # Plot scatter alcohol vs residual.sugar with quality (colour)
 ggplot(aes(x = residual.sugar, y = alcohol, colour = quality.cat), data = wine) +
-  geom_point() +
+  geom_point(position = position_jitter(width = 0.2, height = 0.1)) +
   scale_color_brewer(type = 'div',
                      guide = guide_legend(title = 'Quality', reverse = TRUE,
                                           override.aes = list(alpha = 1, size = 2))) +
@@ -697,7 +697,7 @@ ggplot(aes(x = residual.sugar, y = alcohol, colour = quality.cat), data = wine) 
 
 # Plot scatter alcohol vs residual.sugar with quality (colour - separated) 
 ggplot(aes(x = residual.sugar, y = alcohol, colour = quality.cat), data = wine) +
-  geom_point(position = position_jitter(width = 0.2, height = 0)) +
+  geom_point(position = position_jitter(width = 0.2, height = 0.1)) +
   scale_color_brewer(type = 'div',
                      guide = guide_legend(title = 'Quality', reverse = TRUE,
                                           override.aes = list(alpha = 1, size = 2))) +
