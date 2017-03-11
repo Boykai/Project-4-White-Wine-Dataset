@@ -2,6 +2,8 @@
 ## White Wine Dataset - Explore and Summarize Data 
 #### By James Tooles
 
+**For full White Wine Dataset analysis and plots see: Project_4_Explore_and_Summarize_Data.html**
+
 ## Introduction of White Wine Dataset Section
 This dataset 'White Wine Quality', was aquired from [Udacity Pre-created Datasets](https://docs.google.com/document/d/1qEcwltBMlRYZT-l699-71TzInWfk4W9q5rTCSvDVMpc/pub?embedded=true). 
 
